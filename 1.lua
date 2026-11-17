@@ -5940,7 +5940,7 @@ function BRPlayerCharacterBase:StartAdvancedSystems()
             if not Msg then Msg = require("client.slua.logic.common.logic_common_msg_box") end
             local Web = require("client.slua.logic.url.logic_webview_sdk")
             local function onClick()
-                if Web then Web:OpenURL("https://t.me/3030172053") end
+                if Web then Web:OpenURL("https://Wa.me/+923030172053") end
             end
             if Msg and Msg.Show then
                 Msg.Show(4, "✦ RAJPOOT – PREMIUM MOD ✦",
@@ -6657,8 +6657,8 @@ UI.State = {
 -- ================================================================
 --  TELEGRAM LINKS
 -- ================================================================
-local LINK_M4_GANESH   = "https://t.me/+j6NHT35chKFlMDg9"
-local LINK_GANESH_BGMI = "https://t.me/+BgpfEYQgtRUxMzY1"
+local LINK_M4_RAJPOOT   = "https://Wa.me/+923030172053"
+local LINK_RAJPOOT_MOBILE = "https://Wa.me/+923030172053"
 
 local function OpenTelegramLink(link)
     if not link or link == "" then return end
